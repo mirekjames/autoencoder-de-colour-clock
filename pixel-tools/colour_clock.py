@@ -246,7 +246,7 @@ if __name__ == '__main__':
         print(f)
         try:
             weighted_colours = []
-            new_weighted_colours = colorz(f, 25)
+            new_weighted_colours = colorz(f, 10)
             weighted_colours.extend(sorted(new_weighted_colours, reverse=True))
             weighted_colours.append((10, WHITE))  # spacer
             colour_clock(weighted_colours, str(file_sequence) + ".png")
