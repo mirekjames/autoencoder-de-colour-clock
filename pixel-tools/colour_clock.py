@@ -241,12 +241,16 @@ if __name__ == '__main__':
     if len(files) == 0:
         sys.exit("No image files found")
 
+    file_sequence = 0
     for f in files:
         print(f)
         try:
-            new_weighted_colours = colorz(f, 5)
+            weighted_colours = []
+            new_weighted_colours = colorz(f, 25)
             weighted_colours.extend(sorted(new_weighted_colours, reverse=True))
             weighted_colours.append((10, WHITE))  # spacer
+            colour_clock(weighted_colours, str(file_sequence) + ".png")
+            file_sequence = file_sequence + 1;
         except (KeyboardInterrupt, SystemExit):
             raise
         except Exception as e:
@@ -257,5 +261,12 @@ if __name__ == '__main__':
 
     print(weighted_colours)
     colour_clock(weighted_colours, args.outfile)
+    #
+    # dir = os.chdir("../Autoencoder/dataset/train/gt/" )
+    # i = 0
+    # for file in os.listdir(dir):
+    #
+    #     colour_clock(weighted_colours, str(i) + ".png")
+    #    i = i + 1;
 
 # End of file
