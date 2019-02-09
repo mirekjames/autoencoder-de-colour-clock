@@ -248,7 +248,10 @@ if __name__ == '__main__':
             new_weighted_colours = colorz(f, 10)
             weighted_colours.extend(sorted(new_weighted_colours, reverse=True))
             weighted_colours.append((10, WHITE))  # spacer
-            colour_clock(weighted_colours, os.path.basename(f)[0] + ".png")
+
+            basename = os.path.basename(f)
+            colour_clock(weighted_colours, os.path.splitext(basename)[0] + ".png")
+
         except (KeyboardInterrupt, SystemExit):
             raise
         except Exception as e:
