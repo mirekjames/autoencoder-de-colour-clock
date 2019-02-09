@@ -249,7 +249,9 @@ if __name__ == '__main__':
             new_weighted_colours = colorz(f, 10)
             weighted_colours.extend(sorted(new_weighted_colours, reverse=True))
             weighted_colours.append((10, WHITE))  # spacer
-            colour_clock(weighted_colours, str(file_sequence) + ".png")
+
+            # print(os.path.basename(f)[0])
+            colour_clock(weighted_colours, os.path.basename(f)[0] + ".png")
             file_sequence = file_sequence + 1;
         except (KeyboardInterrupt, SystemExit):
             raise
