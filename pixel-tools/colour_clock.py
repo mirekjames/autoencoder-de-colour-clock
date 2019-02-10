@@ -42,8 +42,8 @@ def circle(draw, x_y, r, colour):
 
 def colour_clock(stuff, outfile):
     """ Make and save the colour clock """
-    width = 1000
-    height = width
+    width = 256
+    height = 180
     isize = (width, height)
 
     x = width/2
@@ -250,7 +250,7 @@ if __name__ == '__main__':
             weighted_colours.append((10, WHITE))  # spacer
 
             basename = os.path.basename(f)
-            colour_clock(weighted_colours, os.path.splitext(basename)[0] + ".png")
+            colour_clock(weighted_colours, os.path.splitext(basename)[0] + ".jpg")
 
         except (KeyboardInterrupt, SystemExit):
             raise
@@ -262,12 +262,5 @@ if __name__ == '__main__':
 
     print(weighted_colours)
     colour_clock(weighted_colours, args.outfile)
-    #
-    # dir = os.chdir("../Autoencoder/dataset/train/gt/" )
-    # i = 0
-    # for file in os.listdir(dir):
-    #
-    #     colour_clock(weighted_colours, str(i) + ".png")
-    #    i = i + 1;
 
 # End of file
