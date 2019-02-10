@@ -15,7 +15,7 @@ def test(image_path):
     test_image = test_image/255.
 
     test_data = tf.placeholder(tf.float32, [None, IMAGE_HEIGHT, IMAGE_WIDTH, N_CHANNEL])
-    
+
     output = neural_network_with_skip_connections(test_data)
 
     sess = tf.Session()
@@ -32,4 +32,3 @@ def test(image_path):
 if __name__ == "__main__":
     image_path = sys.argv[1]
     test(image_path)
-    

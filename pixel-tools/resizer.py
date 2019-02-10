@@ -4,7 +4,7 @@ Make a colour clock/story wheel of the five most dominant colours
 on each page of a book (or jpg).
 """
 from __future__ import print_function
-from PIL import Image, ImageDraw
+from PIL import Image, ImageDraw, ImageChops
 from collections import namedtuple
 from math import sqrt
 import argparse
@@ -40,38 +40,24 @@ def circle(draw, x_y, r, colour):
 # ]
 
 
-def colour_clock(stuff, outfile):
+def colour_clock(filename, outfile):
     """ Make and save the colour clock """
-    width = 1000
-    height = width
-    isize = (width, height)
+    size = (180, 180)
 
-    x = width/2
-    y = height/2
-    r = min(x, y) * 9/10
+    im = Image.open(filename)
+    im.thumbnail(size, Image.ANTIALIAS)
+    im_size = im.size
+    thumb = im.crop( (0, 0, size[0], size[1]) )
+    offset_x = int(max( (size[0] - im_size[0]) / 2, 0 ))
+    offset_y = int(max( (size[1] - im_size[1]) / 2, 0 ))
+    thumb = ImageChops.offset(thumb, offset_x, offset_y)
 
-    im = Image.new('RGB', isize, WHITE)
-    draw = ImageDraw.Draw(im)
-
-    total = 0
-    for thing in stuff:
-        total += thing[0]
-
-    print(total)
-    # Make total a bit bigger so we stop at about 11 o'clock
-    total *= 1.1
-
-    start = 0
-    for thing in stuff:
-        end = start + 360 * thing[0] / total
-        print(start, "->", end, thing[1])
-        draw = arc(draw, (x, y), r, (start, end), thing[1])
-        start = end
-
-    draw = circle(draw, (x, y), r * 3 / 4, WHITE)
+    new_image = Image.new( 'RGB' , (256,180) , (255,255,255) )
+    # paste it at an offset. if you put no offset or a box, i3 must match i2s dimensions
+    new_image.paste( thumb, (40, 0) )
 
     print("Saving to:", outfile)
-    im.save(outfile)
+    new_image.save(outfile)
 
 
 #########################################################
@@ -233,7 +219,7 @@ if __name__ == '__main__':
     else:
         # If input is dir, append *.jpg
         if os.path.isdir(args.input):
-            args.input = os.path.join(args.input, "*.jpg")
+            args.input = os.path.join(args.input, "*.png")
 
     weighted_colours = []
 
@@ -241,20 +227,17 @@ if __name__ == '__main__':
     if len(files) == 0:
         sys.exit("No image files found")
 
-    file_sequence = 0
     for f in files:
         print(f)
         try:
-<<<<<<< HEAD:pixel-tools/colour_clock.py
             weighted_colours = []
-            new_weighted_colours = colorz(f, 25)
-=======
-            new_weighted_colours = colorz(f, 20)
->>>>>>> 388c85b07605085e3411a2978a6461758e3547c8:colour_clock.py
+            new_weighted_colours = colorz(f, 10)
             weighted_colours.extend(sorted(new_weighted_colours, reverse=True))
             weighted_colours.append((10, WHITE))  # spacer
-            colour_clock(weighted_colours, str(file_sequence) + ".png")
-            file_sequence = file_sequence + 1;
+
+            basename = os.path.basename(f)
+            colour_clock(f, os.path.splitext(basename)[0] + ".jpg")
+
         except (KeyboardInterrupt, SystemExit):
             raise
         except Exception as e:
