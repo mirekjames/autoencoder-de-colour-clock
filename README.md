@@ -11,13 +11,13 @@ Original autoencoder code provided by https://github.com/manumathewthomas
 For our first attempt, we kept the same params as the original autoencoder.
 
 Ground truth --
-![](/Autoencoder/dataset/val/gt/0.jpg)
+![](./Autoencoder/dataset/val/gt/0.jpg)
 
 Generated colour clock --
-![](/Autoencoder/model1/validation_results/0_input_noisy.jpg)
+![](./Autoencoder/model1/validation_results/0_input_noisy.jpg)
 
 Output (generating image based on colour clock) --
-![](/Autoencoder/model1/validation_results/0_output_denoised.jpg)
+![](./Autoencoder/model1/validation_results/0_output_denoised.jpg)
 
 
 ## How to run it yourself
