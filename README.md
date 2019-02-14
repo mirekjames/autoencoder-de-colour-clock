@@ -8,17 +8,40 @@ Colour clocks were created using `colour-clock.py` at https://github.com/hugovk/
 Original autoencoder code provided by https://github.com/manumathewthomas
 
 ## Some results
-For our first attempt, we kept the same params as the original autoencoder.
+Ground truth:
+![](./img/gt-1.png)
+![](./img/gt-2.png)
+![](./img/gt-3.png)
 
-Ground truth --
-![](./Autoencoder/dataset/val/gt/0.jpg)
+Generated colour clock:
+![](./img/wheel-1.png)
+![](./img/wheel-2.png)
+![](./img/wheel-3.png)
 
-Generated colour clock --
-![](./Autoencoder/model1/validation_results/0_input_noisy.jpg)
+We use the generated color clock to try to generate the original ground truth image:
 
-Output (generating image based on colour clock) --
-![](./Autoencoder/model1/validation_results/0_output_denoised.jpg)
+Output for Model 1 (100,000 iterations, batch size = 5):
+![](./img/model1-1.png)
+![](./img/model1-2.png)
+![](./img/model1-3.png)
 
+Output for Model 2 (200,000 iterations, batch size = 20):
+![](./img/model2-1.png)
+![](./img/model2-2.png)
+![](./img/model2-3.png)
+
+
+Another attempt -- using a different generated colour clock image with the original ground truth image as background.
+
+Generated color clock:
+![](./img/wheel2-1.png)
+![](./img/wheel2-2.png)
+![](./img/wheel2-3.png)
+
+Output for Model 3 (100,000 iterations, batch size = 50):
+![](./img/model3-1.png)
+![](./img/model3-2.png)
+![](./img/model3-3.png)
 
 ## How to run it yourself
 ### Create colour clocks

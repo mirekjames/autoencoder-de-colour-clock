@@ -16,9 +16,9 @@ IMAGE_HEIGHT = 180
 IMAGE_EXT ='jpg'
 
 TRAIN_GT_DATASET_PATH ='dataset/train/gt'
-TRAIN_NOISY_DATASET_PATH ='dataset/train/clock'
+TRAIN_NOISY_DATASET_PATH ='dataset/train/clock2'
 VAL_GT_DATASET_PATH ='dataset/val/gt'
-VAL_NOISY_DATASET_PATH ='dataset/val/clock'
+VAL_NOISY_DATASET_PATH ='dataset/val/clock2'
 
 
 CKPT_DIR = './Checkpoints/'
