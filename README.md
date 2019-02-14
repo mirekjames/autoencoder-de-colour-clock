@@ -60,5 +60,5 @@ You can find the results of training in the `validation_results` folder. You can
 
 
 ## Contributors
-Mirek Stolee - https://github.com/mirekjames
+Mirek Stolee - https://github.com/mirekjames  
 Devi Acharya - https://github.com/dacharya64
